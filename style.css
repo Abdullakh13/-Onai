@@ -1,0 +1,649 @@
+/* Сброс стилей и базовые настройки */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f4f7f6; /* Слегка изменен фон */
+  color: #333;
+  padding: 20px;
+  line-height: 1.6; /* Улучшена читаемость */
+}
+
+/* Заголовок */
+header {
+  text-align: center;
+  margin-bottom: 30px; /* Увеличен отступ */
+  color: #0d47a1; /* Более темный синий */
+}
+
+/* Основной контейнер */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex; /* Используем Flexbox для расположения секций */
+  flex-direction: column;
+  gap: 25px; /* Расстояние между секциями */
+}
+
+/* Секции */
+section {
+  background-color: #fff;
+  padding: 20px 25px; /* Увеличен padding */
+  margin-bottom: 0; /* Убрали, т.к. используем gap в main */
+  border-radius: 10px; /* Больше скругление */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Мягкая тень */
+  border: 1px solid #e0e0e0; /* Тонкая рамка */
+}
+
+section h2 {
+  margin-bottom: 15px; /* Увеличен отступ */
+  color: #1976d2; /* Синий цвет заголовков секций */
+  border-bottom: 1px solid #eee; /* Линия под заголовком */
+  padding-bottom: 8px;
+  font-weight: 500; /* Средняя жирность */
+}
+
+/* Общие стили для кнопок */
+button {
+  padding: 8px 15px; /* Увеличен padding */
+  border: none;
+  border-radius: 5px; /* Скругление */
+  cursor: pointer;
+  font-size: 0.95em;
+  transition: background-color 0.2s, box-shadow 0.2s, transform 0.1s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Небольшая тень */
+}
+button:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Тень при наведении */
+}
+button:active {
+  transform: translateY(1px); /* Эффект нажатия */
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Общие стили для input[type="text"], input[type="number"] */
+input[type="text"], input[type="number"] {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+}
+input[type="text"]:focus, input[type="number"]:focus {
+  border-color: #1976d2;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2); /* Подсветка при фокусе */
+}
+
+
+/* 1. Управление классами */
+#class-management {
+    display: flex;
+    flex-wrap: wrap; /* Перенос элементов */
+    align-items: center;
+    gap: 10px; /* Расстояние между элементами */
+}
+#class-management h2 { /* Убираем отступ у h2 внутри flex */
+    width: 100%; /* Заголовок на всю ширину */
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: none; /* Убираем доп. линию */
+}
+#class-management input[type="text"] {
+  flex-grow: 1; /* Поле ввода занимает доступное место */
+  min-width: 200px; /* Минимальная ширина */
+}
+#class-management button {
+  background-color: #1976d2; /* Синий */
+  color: #fff;
+}
+#class-management button:hover {
+  background-color: #1565c0; /* Темнее синий */
+}
+#class-management button#delete-class-btn {
+    background-color: #d32f2f; /* Красный для удаления */
+    margin-left: auto; /* Кнопка удаления справа */
+}
+#class-management button#delete-class-btn:hover {
+    background-color: #c62828; /* Темнее красный */
+}
+
+/* Контейнер кнопок классов */
+#class-buttons-container {
+    width: 100%; /* На всю ширину */
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+#class-buttons-container button {
+  padding: 6px 12px;
+  background-color: #e0e0e0; /* Серый фон */
+  color: #333;
+  border: 1px solid #ccc;
+  box-shadow: none; /* Убираем тень у маленьких кнопок */
+}
+#class-buttons-container button:hover {
+  background-color: #d5d5d5;
+  border-color: #bbb;
+}
+#class-buttons-container button.active {
+  background-color: #1976d2;
+  color: #fff;
+  border-color: #1565c0;
+  font-weight: bold;
+}
+#class-buttons-container button.active:hover {
+  background-color: #1565c0; /* Темнее при наведении на активную */
+}
+
+
+/* 2. Дополнительные инструменты */
+#extra-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+#extra-actions h2 { width: 100%; margin-bottom: 10px; }
+#extra-actions button {
+  background-color: #673ab7; /* Фиолетовый */
+  color: #fff;
+}
+#extra-actions button:hover {
+  background-color: #5e35b1;
+}
+
+
+/* Модальные окна (общий стиль) */
+.modal {
+  display: none; /* Скрыто по умолчанию */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0,0,0,0.6); /* Темнее фон */
+  backdrop-filter: blur(3px); /* Эффект размытия фона */
+}
+
+.modal-content {
+  background: #fff;
+  margin: 10% auto; /* Центрирование */
+  padding: 25px 30px; /* Увеличен padding */
+  border-radius: 10px; /* Скругление */
+  width: 90%;
+  max-width: 550px; /* Немного шире */
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  animation: fadeInModal 0.3s ease-out; /* Анимация появления */
+}
+@keyframes fadeInModal {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Кнопка закрытия модального окна */
+.modal-content .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px; /* Крупнее */
+  font-weight: bold;
+  color: #888; /* Серый цвет */
+  cursor: pointer;
+  transition: color 0.2s;
+  line-height: 1; /* Выравнивание */
+}
+.modal-content .close:hover {
+  color: #333; /* Темнее при наведении */
+}
+
+/* Вкладки и содержимое для таймера */
+.tab-header {
+  display: flex;
+  margin-bottom: 20px; /* Больше отступ */
+  border-bottom: 1px solid #ccc;
+}
+.tab-header .tablink {
+  flex: 1;
+  padding: 12px 10px; /* Увеличен padding */
+  border: none;
+  background-color: transparent; /* Прозрачный фон */
+  color: #555;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-bottom 0.3s;
+  border-bottom: 3px solid transparent; /* Линия под неактивной вкладкой */
+  border-radius: 0; /* Убираем скругление у вкладок */
+  box-shadow: none;
+  margin-bottom: -1px; /* Компенсируем border-bottom у родителя */
+  font-size: 1em;
+}
+.tab-header .tablink:hover {
+    background-color: #f5f5f5;
+    color: #1976d2;
+}
+.tab-header .tablink.active {
+  color: #1976d2; /* Активный цвет */
+  font-weight: bold;
+  border-bottom: 3px solid #1976d2; /* Синяя линия под активной вкладкой */
+  background-color: transparent; /* Фон активной тоже прозрачный */
+}
+
+.tab-content {
+  display: none;
+  text-align: center;
+  padding: 10px 0; /* Добавлен отступ */
+}
+.tab-content.active {
+  display: block;
+  animation: fadeInTab 0.4s ease; /* Анимация для контента вкладок */
+}
+@keyframes fadeInTab {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.tab-content h3 {
+    margin-bottom: 15px;
+    color: #555;
+    font-weight: 500;
+}
+
+/* Таймер/Секундомер */
+#stopwatch-display, #countdown-display {
+  font-size: 2.5em; /* Крупнее цифры */
+  margin: 15px 0 20px 0; /* Отступы */
+  color: #333;
+  font-family: 'Courier New', Courier, monospace; /* Моноширинный шрифт */
+}
+#countdown-tab label {
+    margin: 0 10px;
+}
+#countdown-tab input[type="number"] {
+  width: 65px; /* Немного шире */
+  padding: 8px;
+  margin: 0 5px;
+  text-align: center;
+}
+/* Кнопки в таймере */
+#stopwatch-tab button, #countdown-tab button {
+    margin: 5px;
+    min-width: 100px; /* Минимальная ширина кнопок */
+    background-color: #eee;
+    color: #333;
+    border: 1px solid #ccc;
+}
+#stopwatch-tab button:hover, #countdown-tab button:hover {
+    background-color: #ddd;
+    border-color: #bbb;
+}
+#stopwatch-tab button#stopwatch-start-stop-btn,
+#countdown-tab button#countdown-start-btn {
+    background-color: #4CAF50; /* Зеленый для старта */
+    color: white;
+    border-color: #388E3C;
+}
+#stopwatch-tab button#stopwatch-start-stop-btn:hover,
+#countdown-tab button#countdown-start-btn:hover {
+    background-color: #388E3C;
+}
+/* Если кнопка старта стала "Стоп" */
+#stopwatch-tab button#stopwatch-start-stop-btn:not([data-translate-key="startBtn"]) { /* Селектор может быть неточным, зависит от JS */
+     /* background-color: #f44336; /* Красный для стоп */
+     /* border-color: #d32f2f; */
+}
+
+
+/* 3. Карточки учеников */
+#students-container {
+  display: grid; /* Используем Grid для карточек */
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Адаптивные колонки */
+  gap: 20px; /* Расстояние между карточками */
+}
+
+.student-card {
+  background-color: #fff; /* Белый фон */
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Тень */
+  border: 1px solid #e0e0e0; /* Рамка */
+  display: flex; /* Flex для содержимого карточки */
+  flex-direction: column;
+  gap: 10px; /* Отступы внутри карточки */
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+.student-card:hover {
+    transform: translateY(-3px); /* Подъем при наведении */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+}
+
+.student-card h3 {
+  margin-bottom: 5px;
+  font-size: 1.15em; /* Немного крупнее имя */
+  color: #333;
+  font-weight: 500;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+.student-card p { /* Баллы */
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #1976d2; /* Синий цвет баллов */
+  text-align: center;
+}
+
+/* Контейнер для кнопок внутри карточки */
+.student-card .card-buttons {
+    display: flex;
+    justify-content: space-around; /* Кнопки распределяются */
+    margin-top: auto; /* Прижимаем кнопки к низу */
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+.student-card button {
+  padding: 5px 10px;
+  font-size: 0.9em;
+  background-color: #1976d2;
+  color: #fff;
+  flex-grow: 1; /* Кнопки занимают равное место */
+  margin: 0 3px; /* Небольшой отступ между кнопками */
+  box-shadow: none;
+}
+.student-card button:hover {
+  background-color: #1565c0;
+}
+/* Стили для кнопки "-1" */
+.student-card button:nth-of-type(2) { /* Второй button в карточке */
+    background-color: #ff9800; /* Оранжевый */
+}
+.student-card button:nth-of-type(2):hover {
+    background-color: #f57c00;
+}
+/* Стили для кнопки "Ввести балл" */
+.student-card button:nth-of-type(3) { /* Третий button */
+    background-color: #757575; /* Серый */
+}
+.student-card button:nth-of-type(3):hover {
+    background-color: #616161;
+}
+
+/* Карточка добавления ученика */
+.add-student {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9; /* Фон */
+  border: 2px dashed #1976d2; /* Пунктирная рамка */
+  min-height: 150px; /* Минимальная высота */
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+.add-student:hover {
+    background-color: #eef5ff; /* Светло-голубой фон при наведении */
+    border-color: #1565c0;
+}
+.add-student button {
+    background-color: transparent;
+    border: none;
+    color: #1976d2;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 20px;
+    box-shadow: none;
+}
+.add-student:hover button {
+    color: #1565c0;
+}
+
+/* Подсветка выбранного ученика */
+.student-card.highlight {
+  border-color: #ff5722; /* Оранжевая рамка */
+  box-shadow: 0 0 10px rgba(255, 87, 34, 0.5); /* Оранжевое свечение */
+  animation: blinkHighlight 1.5s ease-in-out;
+}
+@keyframes blinkHighlight {
+  0%, 100% { border-color: #ff5722; box-shadow: 0 0 10px rgba(255, 87, 34, 0.5); }
+  50% { border-color: #e0e0e0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); } /* Возврат к обычному состоянию */
+}
+
+/* 4. Групповые действия */
+#group-actions {
+    display: flex;
+    gap: 15px; /* Расстояние */
+}
+#group-actions h2 { width: 100%; margin-bottom: 10px; }
+#group-actions button {
+  background-color: #4CAF50; /* Зеленый */
+  color: #fff;
+}
+#group-actions button:hover {
+  background-color: #388e3c;
+}
+#group-actions button#reset-scores-btn {
+    background-color: #f44336; /* Красный */
+}
+#group-actions button#reset-scores-btn:hover {
+    background-color: #d32f2f;
+}
+
+
+/* 5. Диаграмма */
+/* Контейнер для управления размером диаграммы */
+#score-chart .chart-container {
+  position: relative;
+  /* --- ОСНОВНОЕ ИЗМЕНЕНИЕ: ВЫСОТА ДИАГРАММЫ --- */
+  height: 350px;  /* <<<< Установите здесь желаемую высоту */
+  /* Можно использовать max-height, если нужно */
+  /* max-height: 400px; */
+  width: 100%; /* Ширина адаптивная */
+  margin-bottom: 20px; /* Отступ под диаграммой */
+  background-color: #fdfdfd; /* Легкий фон для области диаграммы */
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 10px; /* Небольшие отступы внутри контейнера */
+}
+
+/* Сам canvas должен занимать весь контейнер */
+#score-chart canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 5px; /* Скругление для canvas */
+}
+
+/* Кнопка под диаграммой */
+#score-chart button {
+  display: block; /* Кнопка на всю ширину блока */
+  width: fit-content; /* Или так, чтобы ширина была по содержимому */
+  margin: 0 auto; /* Центрирование кнопки */
+  background-color: #ff9800; /* Оранжевый */
+  color: #fff;
+}
+#score-chart button:hover {
+  background-color: #f57c00;
+}
+
+/* 6. Шкала оценивания */
+#grading-scale p {
+    margin-bottom: 5px;
+    font-size: 0.95em;
+    color: #555;
+}
+#grading-scale p span { /* Выделение "баллов" */
+    font-style: italic;
+    color: #777;
+}
+
+/* 7. Таблица результатов */
+#results-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px; /* Отступ под таблицей */
+}
+#results-table th,
+#results-table td {
+  padding: 12px 15px; /* Увеличен padding */
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+#results-table th {
+  background-color: #1976d2; /* Синий фон заголовков */
+  color: #fff;
+  font-weight: 500; /* Средняя жирность */
+}
+#results-table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Чередование строк */
+}
+#results-table tr:hover {
+    background-color: #f1f1f1; /* Подсветка строки при наведении */
+}
+#results-table td:last-child, /* Оценка */
+#results-table th:last-child {
+    text-align: center; /* Выравнивание оценки по центру */
+    font-weight: bold;
+}
+#results-table td:first-child, /* Номер п/п */
+#results-table th:first-child {
+    text-align: center;
+    width: 50px; /* Фикс. ширина для номера */
+}
+
+
+/* Кнопка экспорта DOC */
+#export-doc-btn { /* Используем правильный ID */
+  background-color: #d32f2f; /* Красный */
+  color: #fff;
+}
+#export-doc-btn:hover {
+  background-color: #c62828;
+}
+
+
+/* 8. Подвал */
+footer {
+  text-align: center;
+  margin-top: 40px; /* Увеличен отступ сверху */
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+  font-size: 0.9em;
+  color: #777;
+}
+footer p {
+    margin-bottom: 5px;
+}
+
+/* Стили для модального окна Генератора групп */
+.group-generator-header h2 span { font-weight: bold; }
+.group-generator-body p:first-of-type { /* "Выберите, сколько..." */
+    margin-bottom: 15px;
+    color: #555;
+}
+.group-size-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.group-size-btn {
+  padding: 10px 15px; /* Больше кнопки */
+  min-width: 50px; /* Минимальная ширина */
+  text-align: center;
+  background-color: #1976d2;
+  color: #fff;
+  font-size: 1.1em;
+}
+.group-size-btn:hover { background-color: #1565c0; }
+.group-size-btn[data-size="custom"] { font-size: 1.2em; } /* Кнопка "+" чуть крупнее */
+
+#group-generator-result {
+  margin-top: 20px;
+  max-height: 250px; /* Ограничение высоты списка групп */
+  overflow-y: auto; /* Скролл при необходимости */
+  border: 1px solid #eee;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #fdfdfd;
+}
+#group-generator-result p {
+  margin: 8px 0; /* Отступы между группами */
+  padding: 8px 10px;
+  background-color: #f1f1f1;
+  border-radius: 4px;
+  font-size: 0.95em;
+}
+#group-generator-result p:nth-child(odd) { /* Чередование фона для групп */
+    background-color: #e9e9e9;
+}
+
+#cancel-grouping-btn {
+    display: block;
+    margin: 20px auto 0 auto; /* Центрирование кнопки отмены */
+    background-color: #757575;
+    color: white;
+}
+#cancel-grouping-btn:hover { background-color: #616161; }
+
+/* Стили для toast уведомлений */
+#toast-container {
+  position: fixed;
+  bottom: 20px; /* Теперь внизу */
+  left: 50%;   /* Центрируем */
+  transform: translateX(-50%); /* Точное центрирование */
+  z-index: 2000;
+  width: fit-content; /* Ширина по содержимому */
+  max-width: 90%; /* Ограничение ширины */
+}
+
+.toast {
+  background-color: rgba(50, 50, 50, 0.9); /* Полупрозрачный темный */
+  color: #fff;
+  padding: 12px 20px; /* Уменьшен padding */
+  border-radius: 25px; /* Сильно скругленные */
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Разносим текст и кнопку */
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  animation: slideInUp 0.5s forwards;
+  backdrop-filter: blur(2px);
+}
+
+.toast button.toast-close { /* Стилизуем кнопку внутри toast */
+  background: none;
+  border: none;
+  color: #ffab40; /* Оранжевый цвет */
+  margin-left: 15px; /* Отступ слева */
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.9em;
+  padding: 5px; /* Увеличиваем область клика */
+  line-height: 1;
+  box-shadow: none; /* Убираем тень у кнопки */
+}
+.toast button.toast-close:hover {
+    color: #ffd180; /* Светлее при наведении */
+}
+
+.toast.slide-out {
+  animation: slideOutDown 0.5s forwards;
+}
+
+/* Анимации для toast (снизу вверх и обратно) */
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(100%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideOutDown {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(100%); }
+}
